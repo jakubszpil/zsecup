@@ -20,12 +20,22 @@
         <div class="nav__menu menu">
           <ul class="menu-list menu-list--navigation">
             <li v-for="(link, key) in menuLinks" :key="key" class="menu-list-item">
-              <nuxt-link class="link menu-list-item__link" @click.native="handleMenuClose" :tabindex="tabIndex('show')" :to="link.path">{{ link.name }}</nuxt-link>
+              <nuxt-link
+                class="link menu-list-item__link"
+                @click.native="handleMenuClose"
+                :tabindex="tabIndex('show')"
+                :to="link.path"
+              >{{ link.name }}</nuxt-link>
             </li>
           </ul>
           <ul class="menu-list menu-list--social">
             <li v-for="(link, key) in socialLinks" :key="key" class="menu-list-item">
-              <nuxt-link class="link menu-list-item__link" @click.native="handleMenuClose" :tabindex="tabIndex('show')" :to="link.path">{{ link.name }}</nuxt-link>
+              <nuxt-link
+                class="link menu-list-item__link"
+                @click.native="handleMenuClose"
+                :tabindex="tabIndex('show')"
+                :to="link.path"
+              >{{ link.name }}</nuxt-link>
             </li>
           </ul>
         </div>
@@ -319,6 +329,36 @@ export default {
           .menu-list-item {
             margin-right: $padding / 2;
             font-size: 18px;
+            position: relative;
+            &::before,
+            &::after {
+              display: block;
+              content: '';
+              position: absolute;
+              bottom: -9px;
+              height: 3px;
+              width: 100%;
+              border-radius: 3px;
+              transform: scale(0, 1);
+              transition: transform $timing 0s;
+            }
+            &::before {
+              background: $white;
+            }
+            &::after {
+              background: $yellow;
+            }
+            &:hover {
+              &::before {
+                transition: transform $timing 0s;
+                transform: scale(1, 1);
+              }
+              &::after {
+                transition: transform $timing $timing * 2;
+                transform: scale(1, 1);
+              }
+            }
+
             &:nth-last-child(1) {
               margin-right: 0;
             }

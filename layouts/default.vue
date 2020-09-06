@@ -1,10 +1,16 @@
 <template>
   <div>
     <Header />
-    <main :class="[isMobile ? 'translate' : null, isOpen && isMobile ? 'translate--trigger' : null]">
-      <nuxt />
+    <main
+      :class="[isMobile ? 'translate' : null, isOpen && isMobile ? 'translate--trigger' : null]"
+    >
+      <transition name="page">
+        <nuxt />
+      </transition>
     </main>
-    <footer :class="[isMobile ? 'translate' : null, isOpen && isMobile ? 'translate--trigger' : null]">
+    <footer
+      :class="[isMobile ? 'translate' : null, isOpen && isMobile ? 'translate--trigger' : null]"
+    >
       <Container>
         <p>{{ new Date().getFullYear() }} &copy; Wszelkie prawa zastrzeżone</p>
       </Container>
@@ -20,6 +26,12 @@ export default {
       isOpen: 'menu/isOpen',
       isMobile: 'menu/isMobile',
     }),
+  },
+  transition: 'page',
+  watch: {
+    $route() {
+      window.scrollTo(0, 0)
+    },
   },
 }
 </script>
@@ -45,6 +57,9 @@ body,
 
 a {
   color: inherit;
+  &:hover {
+    color: white;
+  }
 }
 
 .link {
@@ -99,5 +114,14 @@ main {
       transition: opacity $timing * 4;
     }
   }
+}
+
+.page-enter-active,
+.page-leave-active {
+  transition: opacity $timing;
+}
+.page-enter,
+.page-leave-active {
+  opacity: 0;
 }
 </style>
