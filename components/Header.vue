@@ -1,13 +1,13 @@
 <template>
   <header
     class="app-header header"
-    :class="[isMobile ? 'header--mobile' : 'header--desktop', $route.path === '/' ? 'header--transparent' : null , isMobile && isOpen ? 'header--menu-opened' : null, isScrolled ? 'header--scrolled' : null]"
+    :class="[isMobile ? 'header--mobile' : 'header--desktop', $route.path === '/' ? 'header--transparent' : null, isMobile && isOpen ? 'header--menu-opened' : null, isScrolled ? 'header--scrolled' : null]"
     ref="header"
   >
     <Container class="header__container">
       <h1 class="header__title">
-        <nuxt-link to="/" :tabindex="tabIndex('hidden')" class="header-logo">
-          <img src alt class="header-logo__image" />
+        <nuxt-link to="/" :tabindex="tabIndex('hidden')" class="link header-logo">
+          <img src="/img/logo.png" alt="ZSECUP LOGO" class="header-logo__image" />
           <span class="header-logo__title">zse4cup</span>
         </nuxt-link>
       </h1>
@@ -20,22 +20,12 @@
         <div class="nav__menu menu">
           <ul class="menu-list menu-list--navigation">
             <li v-for="(link, key) in menuLinks" :key="key" class="menu-list-item">
-              <nuxt-link
-                class="menu-list-item__link"
-                @click.native="handleMenuClose"
-                :tabindex="tabIndex('show')"
-                :to="link.path"
-              >{{ link.name }}</nuxt-link>
+              <nuxt-link class="link menu-list-item__link" @click.native="handleMenuClose" :tabindex="tabIndex('show')" :to="link.path">{{ link.name }}</nuxt-link>
             </li>
           </ul>
           <ul class="menu-list menu-list--social">
             <li v-for="(link, key) in socialLinks" :key="key" class="menu-list-item">
-              <nuxt-link
-                class="menu-list-item__link"
-                @click.native="handleMenuClose"
-                :tabindex="tabIndex('show')"
-                :to="link.path"
-              >{{ link.name }}</nuxt-link>
+              <nuxt-link class="link menu-list-item__link" @click.native="handleMenuClose" :tabindex="tabIndex('show')" :to="link.path">{{ link.name }}</nuxt-link>
             </li>
           </ul>
         </div>
@@ -149,6 +139,14 @@ export default {
   &__title {
     font-family: $font--header;
     line-height: $padding;
+  }
+  &-logo {
+    display: flex;
+    align-items: flex-end;
+    &__image {
+      max-width: $padding;
+      margin-right: $padding / 4;
+    }
   }
 
   .nav {

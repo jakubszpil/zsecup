@@ -1,6 +1,7 @@
 <template>
   <section class="hero" ref="hero">
     <Container class="hero__container">
+      <img v-show="!isMobile" class="hero__image" src="/img/logo.png" alt="Logo turnieju ZSECUP" />
       <h2 class="hero-title">
         <span class="hero-title__line">ZSE4CUP</span>
         <span class="hero-title__line">Czwarta edycja kultowego turnieju esportowego</span>
@@ -9,15 +10,22 @@
       <p class="hero__quote">Przeżyj niesamowite chwile</p>
 
       <div class="hero-links">
-        <nuxt-link class="button hero-links__item" to="/turniej">Turniej</nuxt-link>
-        <nuxt-link class="button hero-links__item" to="/kontakt">Kontakt</nuxt-link>
+        <nuxt-link class="link button hero-links__item" to="/turniej">Turniej</nuxt-link>
+        <nuxt-link class="link button hero-links__item" to="/kontakt">Kontakt</nuxt-link>
       </div>
     </Container>
   </section>
 </template>
 
 <script>
+import { mapMutations, mapGetters } from 'vuex'
+
 export default {
+  computed: {
+    ...mapGetters({
+      isMobile: 'menu/isMobile',
+    }),
+  },
   methods: {
     handleScroll() {
       const { height } = this.$refs.hero.getBoundingClientRect()
@@ -49,6 +57,10 @@ export default {
   background-size: cover;
   text-align: left;
   z-index: 0;
+  &__image {
+    width: 1 / 3 * 100vw;
+    max-width: 240px;
+  }
   &__container {
     display: flex;
     flex-direction: column;

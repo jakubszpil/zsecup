@@ -12,6 +12,10 @@ export const state = () => ({
       name: 'Turniej',
     },
     {
+      path: '/aktualnosci',
+      name: 'Aktualności',
+    },
+    {
       path: '/informacje',
       name: 'Informacje',
     },

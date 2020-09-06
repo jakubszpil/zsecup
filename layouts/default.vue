@@ -1,14 +1,10 @@
 <template>
   <div>
     <Header />
-    <main
-      :class="[isMobile ? 'translate' : null, (isOpen && isMobile) ? 'translate--trigger' : null]"
-    >
+    <main :class="[isMobile ? 'translate' : null, isOpen && isMobile ? 'translate--trigger' : null]">
       <nuxt />
     </main>
-    <footer
-      :class="[isMobile ? 'translate' : null, (isOpen && isMobile) ? 'translate--trigger' : null]"
-    >
+    <footer :class="[isMobile ? 'translate' : null, isOpen && isMobile ? 'translate--trigger' : null]">
       <Container>
         <p>{{ new Date().getFullYear() }} &copy; Wszelkie prawa zastrzeżone</p>
       </Container>
@@ -38,7 +34,8 @@ export default {
 
 html,
 body,
-#__nuxt {
+#__nuxt,
+#__layout {
   width: 100%;
   background-color: $black;
   color: $white;
@@ -47,6 +44,10 @@ body,
 }
 
 a {
+  color: inherit;
+}
+
+.link {
   text-decoration: none;
   color: inherit;
 }
@@ -59,6 +60,8 @@ a {
   padding: $padding / 2;
   background-color: $yellow;
   color: $black;
+  border: 0;
+  cursor: pointer;
 }
 
 section {
@@ -66,11 +69,35 @@ section {
   z-index: 1;
 }
 
+main {
+  min-height: 100vh;
+}
+
 .translate {
   transition: transform $timing * 4;
+  position: relative;
+  &::after {
+    width: 100%;
+    height: 100vh;
+    height: -webkit-fill-available;
+    position: fixed;
+    top: 0;
+    left: 0;
+    content: '';
+    display: block;
+    background-color: #000;
+    opacity: 0;
+    transition: opacity $timing * 2;
+    visibility: collapse;
+  }
 
   &--trigger {
     transform: translateX(-10%);
+    &::after {
+      visibility: visible;
+      opacity: 1;
+      transition: opacity $timing * 4;
+    }
   }
 }
 </style>

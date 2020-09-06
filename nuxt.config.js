@@ -1,8 +1,12 @@
 export default {
   mode: 'universal',
+
   target: 'static',
   head: {
     title: process.env.SITE_TITLE,
+    htmlAttrs: {
+      lang: 'pl',
+    },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
