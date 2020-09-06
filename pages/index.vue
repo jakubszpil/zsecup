@@ -14,7 +14,7 @@
           <li class="shortcuts-item" v-for="(article, key) in articles" :key="key">
             <nuxt-link class="link shortcuts-item" :to="'/aktualnosci/' + article.slug">
               <div class="shortcuts-item-content">
-                <img :src="`/img/${article.slug}.jpg`" class="shortcuts-item-content__image" :alt="article.slug" />
+                <!-- <img :src="`/img/${article.slug}.jpg`" class="shortcuts-item-content__image" :alt="article.slug" /> -->
                 <h3 class="shortcuts-item-content__title">{{ article.title }}</h3>
                 <p class="shortcuts-item-content__description">{{ article.description }}</p>
               </div>
