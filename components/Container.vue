@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <slot />
   </div>
 </template>
@@ -8,4 +8,13 @@
 export default {}
 </script>
 
-<style></style>
+<style lang="scss">
+.container {
+  width: 100%;
+  height: auto;
+  position: relative;
+  margin: 0 auto;
+  padding: 0 $padding;
+  max-width: $max-width;
+}
+</style>

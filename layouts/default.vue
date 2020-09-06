@@ -1,15 +1,31 @@
 <template>
   <div>
     <Header />
-    <main>
+    <main
+      :class="[isMobile ? 'translate' : null, (isOpen && isMobile) ? 'translate--trigger' : null]"
+    >
       <nuxt />
     </main>
-    <footer></footer>
+    <footer
+      :class="[isMobile ? 'translate' : null, (isOpen && isMobile) ? 'translate--trigger' : null]"
+    >
+      <Container>
+        <p>{{ new Date().getFullYear() }} &copy; Wszelkie prawa zastrzeżone</p>
+      </Container>
+    </footer>
   </div>
 </template>
 
 <script>
-export default {}
+import { mapMutations, mapGetters } from 'vuex'
+export default {
+  computed: {
+    ...mapGetters({
+      isOpen: 'menu/isOpen',
+      isMobile: 'menu/isMobile',
+    }),
+  },
+}
 </script>
 
 <style lang="scss">
@@ -24,13 +40,37 @@ html,
 body,
 #__nuxt {
   width: 100%;
-  background-color: $color--secondary;
-  color: $color--text;
-  font-family: 'Varela Round', sans-serif;
+  background-color: $black;
+  color: $white;
+  font-family: $font;
+  height: -webkit-fill-available;
 }
 
 a {
   text-decoration: none;
   color: inherit;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  padding: $padding / 2;
+  background-color: $yellow;
+  color: $black;
+}
+
+section {
+  padding-top: $padding * 2;
+  z-index: 1;
+}
+
+.translate {
+  transition: transform $timing * 4;
+
+  &--trigger {
+    transform: translateX(-10%);
+  }
 }
 </style>

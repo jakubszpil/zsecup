@@ -7,3 +7,20 @@ $black: #131417;
 $color--primary: $blue;
 $color--secondary: $white;
 $color--text: $black;
+
+@font-face {
+  font-family: 'Empirez';
+  src: url('/fonts/Empirez.ttf') format('truetype'), url('/fonts/Empirez.otf') format('opentype');
+}
+
+$font: 'Varela Round', sans-serif;
+$font--header: 'Empirez';
+
+$padding: 36px;
+
+$timing: 0.1s;
+
+$max-width: 1400px;
+
+$mq--mobile: 799;
+$mq--desktop: 800px;
