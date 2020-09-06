@@ -3,7 +3,7 @@ export default {
 
   target: 'static',
   head: {
-    title: process.env.SITE_TITLE,
+    title: 'ZSE4CUP',
     htmlAttrs: {
       lang: 'pl',
     },
@@ -16,7 +16,7 @@ export default {
         content: process.env.npm_package_description || '',
       },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/img/logo.png' }],
   },
   css: [],
   plugins: [],
