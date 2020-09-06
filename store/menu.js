@@ -1,7 +1,7 @@
 export const state = () => ({
   open: false,
   scrolled: false,
-  mobile: false,
+  mobile: true,
   links: [
     {
       path: '/',

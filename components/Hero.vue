@@ -1,7 +1,7 @@
 <template>
   <section class="hero" ref="hero">
     <Container class="hero__container">
-      <img v-show="!isMobile" class="hero__image" src="/img/logo.png" alt="Logo turnieju ZSECUP" />
+      <img class="hero__image" src="/img/logo.png" alt="Logo turnieju ZSECUP" />
       <h2 class="hero-title">
         <span class="hero-title__line">ZSE4CUP</span>
         <span class="hero-title__line">Czwarta edycja kultowego turnieju esportowego</span>
@@ -123,6 +123,11 @@ export default {
   &__quote {
     font-size: 24px;
     opacity: 0.75;
+  }
+  @media screen and (max-width: $mq--mobile) {
+    .hero__image {
+      display: none;
+    }
   }
 
   @media screen and (min-width: $mq--desktop) {

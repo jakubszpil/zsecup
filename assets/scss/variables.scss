@@ -13,7 +13,7 @@ $color--text: $black;
   src: url('/fonts/Empirez.ttf') format('truetype'), url('/fonts/Empirez.otf') format('opentype');
 }
 
-$font: 'Varela Round', sans-serif;
+$font: Varela Round, sans-serif;
 $font--header: 'Empirez';
 
 $padding: 36px;
@@ -22,5 +22,5 @@ $timing: 0.1s;
 
 $max-width: 1400px;
 
-$mq--mobile: 799;
+$mq--mobile: 799px;
 $mq--desktop: 800px;

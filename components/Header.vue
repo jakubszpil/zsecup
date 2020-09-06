@@ -233,7 +233,8 @@ export default {
     }
   }
 
-  &--mobile {
+  @media screen and (max-width: $mq--mobile) {
+    /* &--mobile { */
     .menu {
       position: fixed;
       top: 0;
@@ -270,8 +271,8 @@ export default {
         }
       }
     }
+    /* } */
   }
-
   &--transparent {
     &::after {
       opacity: 0;
@@ -322,7 +323,11 @@ export default {
     }
   }
 
-  &--desktop {
+  @media screen and (min-width: $mq--desktop) {
+    .nav-btn {
+      display: none;
+    }
+    /* &--desktop { */
     .menu {
       &-list {
         &--navigation {
@@ -367,5 +372,6 @@ export default {
       }
     }
   }
+  /* } */
 }
 </style>
