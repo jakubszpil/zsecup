@@ -1,20 +1,12 @@
 <template>
   <div>
     <Header />
-    <main
-      :class="[isMobile ? 'translate' : null, isOpen && isMobile ? 'translate--trigger' : null]"
-    >
+    <main :class="[isMobile ? 'translate' : null, isOpen && isMobile ? 'translate--trigger' : null]">
       <transition name="page">
         <nuxt />
       </transition>
     </main>
-    <footer
-      :class="[isMobile ? 'translate' : null, isOpen && isMobile ? 'translate--trigger' : null]"
-    >
-      <Container>
-        <p>{{ new Date().getFullYear() }} &copy; Wszelkie prawa zastrzeżone</p>
-      </Container>
-    </footer>
+    <Footer :class="[isMobile ? 'translate' : null, isOpen && isMobile ? 'translate--trigger' : null]" />
   </div>
 </template>
 

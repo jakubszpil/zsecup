@@ -1,13 +1,13 @@
 <template>
   <div>
     <Hero />
-    <section>
+    <section id="about">
       <Container>
         <h2>O turnieju</h2>
         <nuxt-link class="secion__link" to="/turniej">Dowiedz się więcej...</nuxt-link>
       </Container>
     </section>
-    <section>
+    <section id="news">
       <Container>
         <h2>Aktualności</h2>
         <ul class="shortcuts">
@@ -24,13 +24,13 @@
         <nuxt-link class="secion__link" to="/aktualnosci">Zobacz wszystkie aktualności</nuxt-link>
       </Container>
     </section>
-    <section>
+    <section id="info">
       <Container>
         <h2>Informacje</h2>
         <nuxt-link class="secion__link" to="/informacje">Więcej informacji...</nuxt-link>
       </Container>
     </section>
-    <ContactForm :shortVariant="true" />
+    <ContactForm id="contact" :shortVariant="true" />
   </div>
 </template>
 
@@ -75,5 +75,9 @@ export default {
       }
     }
   }
+}
+
+section h2 {
+  margin-bottom: $padding;
 }
 </style>

@@ -25,9 +25,8 @@
           <textarea v-model="user.message" id="message" name="message" class="form-field__textarea" required placeholder="Treść wiadomości"></textarea>
         </div>
         <button class="button form__button" type="submit">Wyślij</button>
+        <p v-if="shortVariant">Jeśli chcesz się o coś zapytać lub chcesz się rozpisać, przejdź do <nuxt-link to="/kontakt">formularzu kontaktowego</nuxt-link></p>
       </form>
-
-      <p v-if="shortVariant">Jeśli chcesz się o coś zapytać lub chcesz się rozpisać, przejdź do <nuxt-link to="/kontakt">formularzu kontaktowego</nuxt-link></p>
     </Container>
   </section>
 </template>
@@ -66,6 +65,9 @@ export default {
     align-items: flex-start;
     justify-content: flex-start;
     flex-direction: column;
+  }
+  p {
+    margin: $padding 0;
   }
   &-field {
     &__input,
