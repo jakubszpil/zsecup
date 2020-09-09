@@ -1,8 +1,10 @@
 ---
 title: 'Turniej'
-description: ''
+description: 'Opis turnieju'
 ---
+
+# Sekcja generowana z pliku markdown (.md)
 
 ## O turnieju
 
-### siema
+Cześć, tutaj wasz deweloper szpila

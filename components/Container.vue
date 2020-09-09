@@ -17,4 +17,8 @@ export default {}
   padding: 0 $padding;
   max-width: $max-width;
 }
+
+section .container {
+  padding-top: $padding * 1;
+}
 </style>

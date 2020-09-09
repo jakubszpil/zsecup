@@ -22,7 +22,15 @@ export default {
   plugins: [],
   components: true,
   buildModules: ['@nuxtjs/dotenv'],
-  modules: ['@nuxtjs/axios', '@nuxt/content', '@nuxtjs/style-resources'],
+  modules: ['@nuxtjs/axios', '@nuxt/content', '@nuxtjs/proxy', '@nuxtjs/style-resources'],
+  proxy: {
+    '/api': {
+      target: 'http://localhost/services',
+      pathRewrite: {
+        '^/api': '/',
+      },
+    },
+  },
   axios: {},
   content: {},
   build: {},

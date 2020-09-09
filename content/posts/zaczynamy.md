@@ -5,4 +5,4 @@ description: 'Nie poddajemy się i ruszamy już z czwartą edycją turnieju ZSEC
 
 ## Gotowi na wrażenia i emocje?
 
-# SIEMA MORDECZKI
+### Sekcja generowana z pliku markdown (.md)

@@ -1,5 +1,5 @@
 <template>
-  <section class="hero" ref="hero">
+  <div class="hero" ref="hero">
     <Container class="hero__container">
       <img class="hero__image" src="/img/logo.png" alt="Logo turnieju ZSECUP" />
       <h2 class="hero-title">
@@ -14,7 +14,7 @@
         <nuxt-link class="link button hero-links__item" to="/kontakt">Kontakt</nuxt-link>
       </div>
     </Container>
-  </section>
+  </div>
 </template>
 
 <script>

@@ -1,12 +1,16 @@
 <template>
   <div>
     <Header />
-    <main :class="[isMobile ? 'translate' : null, isOpen && isMobile ? 'translate--trigger' : null]">
+    <main
+      :class="[isMobile ? 'translate' : null, isOpen && isMobile ? 'translate--trigger' : null]"
+    >
       <transition name="page">
         <nuxt />
       </transition>
     </main>
-    <Footer :class="[isMobile ? 'translate' : null, isOpen && isMobile ? 'translate--trigger' : null]" />
+    <Footer
+      :class="[isMobile ? 'translate' : null, isOpen && isMobile ? 'translate--trigger' : null]"
+    />
   </div>
 </template>
 
@@ -96,6 +100,7 @@ main {
     opacity: 0;
     transition: opacity $timing * 2;
     visibility: collapse;
+    z-index: 100;
   }
 
   &--trigger {
@@ -110,10 +115,16 @@ main {
 
 .page-enter-active,
 .page-leave-active {
-  transition: opacity $timing;
+  transition: opacity $timing / 3;
 }
 .page-enter,
 .page-leave-active {
   opacity: 0;
+}
+@media screen and (min-width: $mq--desktop) {
+  .page-enter-active,
+  .page-leave-active {
+    transition: opacity $timing * 10 cubic-bezier(0.2, 1.09, 0.88, 0.97);
+  }
 }
 </style>

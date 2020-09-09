@@ -6,26 +6,74 @@
       <form @submit="handleSubmit" class="form">
         <div class="form-field" v-if="!shortVariant">
           <label for="name" class="form-field__label">Imię</label>
-          <input v-model="user.name" type="text" id="name" name="name" class="form-field__input" required placeholder="Imię" />
+          <input
+            v-model="user.name"
+            type="text"
+            id="name"
+            name="name"
+            class="form-field__input"
+            required
+            placeholder="Imię"
+          />
         </div>
         <div class="form-field" v-if="!shortVariant">
           <label for="surname" class="form-field__label">Nazwisko</label>
-          <input v-model="user.surname" type="text" id="surname" name="surname" class="form-field__input" required placeholder="Nazwisko" />
+          <input
+            v-model="user.surname"
+            type="text"
+            id="surname"
+            name="surname"
+            class="form-field__input"
+            required
+            placeholder="Nazwisko"
+          />
         </div>
         <div class="form-field">
           <label for="email" class="form-field__label">Email</label>
-          <input v-model="user.email" type="email" name="email" id="email" class="form-field__input" required placeholder="Email" />
+          <input
+            v-model="user.email"
+            type="email"
+            name="email"
+            id="email"
+            class="form-field__input"
+            required
+            placeholder="Email"
+          />
         </div>
         <div class="form-field" v-if="!shortVariant">
-          <label for="topic" class="form-field__label">Temat</label>
-          <input v-model="user.topic" type="text" name="topic" id="topic" class="form-field__input" required placeholder="Temat wiadomości" />
+          <label for="subject" class="form-field__label">Temat</label>
+          <input
+            v-model="user.subject"
+            type="text"
+            name="subject"
+            id="subject"
+            class="form-field__input"
+            required
+            placeholder="Temat wiadomości"
+          />
         </div>
         <div class="form-field">
           <label for="message" class="form-field__label">Wiadomosć</label>
-          <textarea v-model="user.message" id="message" name="message" class="form-field__textarea" required placeholder="Treść wiadomości"></textarea>
+          <textarea
+            v-model="user.message"
+            id="message"
+            name="message"
+            class="form-field__textarea"
+            required
+            placeholder="Treść wiadomości"
+          ></textarea>
         </div>
-        <button class="button form__button" type="submit">Wyślij</button>
-        <p v-if="shortVariant">Jeśli chcesz się o coś zapytać lub chcesz się rozpisać, przejdź do <nuxt-link to="/kontakt">formularzu kontaktowego</nuxt-link></p>
+        <button class="button form__button" name="sendMessage" type="submit">Wyślij</button>
+        <p v-if="shortVariant">
+          Jeśli chcesz się o coś zapytać lub chcesz się rozpisać, przejdź do
+          <nuxt-link to="/kontakt">formularzu kontaktowego</nuxt-link>
+        </p>
+
+        <p
+          v-if="mailing.response"
+          class="notification"
+          :class="[mailing.send ? 'notification--success' : 'notification--error']"
+        >{{ mailing.send ? "Wiadomość została pomyślnie wysłana :)" : "Ups, coś poszło nie tak :/ Spróbuj jeszcze raz"}}</p>
       </form>
     </Container>
   </section>
@@ -39,7 +87,18 @@ export default {
   methods: {
     handleSubmit(e) {
       e.preventDefault()
-      console.log(this.user)
+      this.$axios
+        .post('/api/mail.php', {
+          ...this.user,
+        })
+        .then(({ data }) => {
+          this.mailing = data
+          if (data.response.status === 200)
+            this.user = {
+              email: '',
+              message: '',
+            }
+        })
     },
   },
   data() {
@@ -48,6 +107,7 @@ export default {
         email: '',
         message: '',
       },
+      mailing: {},
     }
   },
 }
@@ -56,8 +116,9 @@ export default {
 <style lang="scss">
 .form {
   padding: $padding / 2 0;
-  max-width: $max-width / 5 * 2;
+  max-width: $mq--mobile - $padding * 2.5;
   margin: 0 auto;
+
   &,
   &-field {
     width: 100%;
@@ -103,11 +164,23 @@ export default {
   &__button {
     width: 100%;
   }
-  /* 
 
-  @media screen and (min-width: $mq--desktop){
-    max-w
-    
-  } */
+  .notification {
+    text-align: left;
+    align-self: center;
+    width: 100%;
+    &--success {
+      color: #7bed9f;
+    }
+    &--error {
+      color: $red;
+    }
+  }
+
+  @media screen and (min-width: $mq--desktop) {
+    .notification {
+      text-align: center;
+    }
+  }
 }
 </style>

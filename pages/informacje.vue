@@ -1,8 +1,10 @@
 <template>
   <section>
     <Container>
-      <h2>{{ article.title }}</h2>
-      <nuxt-content :document="article" />
+      <article>
+        <h2>{{ article.title }}</h2>
+        <nuxt-content :document="article" />
+      </article>
     </Container>
   </section>
 </template>

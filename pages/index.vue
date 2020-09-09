@@ -3,30 +3,20 @@
     <Hero />
     <section id="about">
       <Container>
-        <h2>O turnieju</h2>
+        <h3>O turnieju</h3>
         <nuxt-link class="secion__link" to="/turniej">Dowiedz się więcej...</nuxt-link>
       </Container>
     </section>
     <section id="news">
       <Container>
-        <h2>Aktualności</h2>
-        <ul class="shortcuts">
-          <li class="shortcuts-item" v-for="(article, key) in articles" :key="key">
-            <nuxt-link class="link shortcuts-item" :to="'/aktualnosci/' + article.slug">
-              <div class="shortcuts-item-content">
-                <!-- <img :src="`/img/${article.slug}.jpg`" class="shortcuts-item-content__image" :alt="article.slug" /> -->
-                <h3 class="shortcuts-item-content__title">{{ article.title }}</h3>
-                <p class="shortcuts-item-content__description">{{ article.description }}</p>
-              </div>
-            </nuxt-link>
-          </li>
-        </ul>
+        <h3>Aktualności</h3>
+        <Posts :posts="articles" />
         <nuxt-link class="secion__link" to="/aktualnosci">Zobacz wszystkie aktualności</nuxt-link>
       </Container>
     </section>
     <section id="info">
       <Container>
-        <h2>Informacje</h2>
+        <h3>Informacje</h3>
         <nuxt-link class="secion__link" to="/informacje">Więcej informacji...</nuxt-link>
       </Container>
     </section>
@@ -37,7 +27,10 @@
 <script>
 export default {
   async asyncData({ $content, params }) {
-    const articles = await $content('posts').fetch()
+    let articles = await $content('posts').fetch()
+    articles = articles.filter((item, key) => {
+      if (key < 4) return item
+    })
     return { articles }
   },
 }
@@ -46,8 +39,8 @@ export default {
 <style lang="scss">
 .shortcuts {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax($padding * 8, 1fr));
-  grid-template-rows: repeat(auto-fit, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax($padding * 7, 1fr));
+  /* grid-template-rows: repeat(auto-fit, 1fr); */
   grid-gap: $padding;
 
   &-item {
@@ -56,13 +49,18 @@ export default {
     align-items: flex-start;
     justify-content: center;
     position: relative;
-    width: 100%;
+    background-color: $black;
+    box-shadow: 0 0 $padding / 2 rgba(0, 0, 0, 0.5);
+    border-radius: $padding / 2;
     &-content {
       width: 100%;
+      height: 100%;
       display: flex;
       align-items: flex-start;
       flex-direction: column;
       justify-content: flex-end;
+      padding: $padding / 3 * 2;
+      color: rgba($color: $white, $alpha: 0.8);
       position: relative;
       z-index: 1;
       &__image {
@@ -77,7 +75,8 @@ export default {
   }
 }
 
-section h2 {
+section h3 {
+  font-size: 24px;
   margin-bottom: $padding;
 }
 </style>
