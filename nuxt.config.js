@@ -31,7 +31,7 @@ export default {
       },
     },
   },
-  axios: {},
+  axios: { baseURL: '/', proxy: true },
   content: {},
   build: {},
   styleResources: {
