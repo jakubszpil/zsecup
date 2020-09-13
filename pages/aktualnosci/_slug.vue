@@ -1,11 +1,5 @@
 <template>
-  <section>
-    <Container>
-      <article>
-        <nuxt-content :document="article" />
-      </article>
-    </Container>
-  </section>
+  <Page :article="article" :hasHeading="false" />
 </template>
 
 <script>
@@ -19,15 +13,6 @@ export default {
 
 <style lang="scss">
 article {
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    margin: $padding / 2 0;
-  }
-
   p {
     margin-bottom: $padding / 2;
   }

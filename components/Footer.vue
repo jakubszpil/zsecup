@@ -6,6 +6,10 @@
         <br />
         <nuxt-link class="footer-title link" to="/">ZSE4CUP</nuxt-link>
       </p>
+      <div>
+        <nuxt-link to="/regulamin">Regulamin</nuxt-link>
+        <nuxt-link to="/polityka-prywatnosci">Polityka Prywatności</nuxt-link>
+      </div>
       <br />
       <p>
         Autorzy strony:
@@ -31,6 +35,11 @@ export default {}
   background-color: $yellow;
   &-title {
     font-family: $font--header;
+  }
+  a {
+    &:hover {
+      color: inherit;
+    }
   }
 }
 </style>

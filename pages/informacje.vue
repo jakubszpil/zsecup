@@ -1,12 +1,5 @@
 <template>
-  <section>
-    <Container>
-      <article>
-        <h2>{{ article.title }}</h2>
-        <nuxt-content :document="article" />
-      </article>
-    </Container>
-  </section>
+  <Page :article="article" :hasHeading="true" />
 </template>
 
 <script>

@@ -6,3 +6,9 @@ description: 'Nie poddajemy się i ruszamy już z czwartą edycją turnieju ZSEC
 ## Gotowi na wrażenia i emocje?
 
 ### Sekcja generowana z pliku markdown (.md)
+
+```javascript
+function sayHello(person) {
+  return `Hello, ${person}`
+}
+```

@@ -1,7 +1,7 @@
 <template>
   <div class="hero" ref="hero">
     <Container class="hero__container">
-      <img class="hero__image" src="/img/logo.png" alt="Logo turnieju ZSECUP" />
+      <img class="hero__image" src="/img/logo.svg" alt="Logo turnieju ZSECUP" />
       <h2 class="hero-title">
         <span class="hero-title__line">ZSE4CUP</span>
         <span class="hero-title__line">Czwarta edycja kultowego turnieju esportowego</span>
@@ -94,13 +94,17 @@ export default {
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
+    font-size: 2rem;
     &__line {
       font-weight: 400;
-      font-size: 24px;
       margin-bottom: $padding / 4;
       &:nth-child(1) {
         font-family: $font--header;
-        font-size: 36px;
+        font-size: 1em * 3 / 2;
+      }
+      &:nth-child(2),
+      &:nth-child(3) {
+        font-size: 0.8em;
       }
       &:nth-child(3) {
         color: $yellow;
@@ -121,7 +125,7 @@ export default {
     }
   }
   &__quote {
-    font-size: 24px;
+    font-size: 1.5rem;
     opacity: 0.75;
   }
   @media screen and (max-width: $mq--mobile) {
@@ -148,12 +152,12 @@ export default {
     text-align: center;
     &-title {
       align-items: center;
-      &__line {
+      /* &__line {
         font-size: 36px;
         &:nth-child(1) {
           font-size: 60px;
         }
-      }
+      } */
     }
   }
 }

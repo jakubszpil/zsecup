@@ -1,6 +1,5 @@
 export default {
   mode: 'universal',
-
   target: 'static',
   head: {
     title: 'ZSE4CUP',
@@ -16,7 +15,7 @@ export default {
         content: process.env.npm_package_description || '',
       },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/img/logo.png' }],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/img/logo.svg' }],
   },
   plugins: [],
   css: [],
@@ -25,13 +24,13 @@ export default {
   modules: ['@nuxtjs/axios', '@nuxt/content', '@nuxtjs/proxy', '@nuxtjs/style-resources'],
   proxy: {
     '/api': {
-      target: 'http://esportwzse.pl',
+      target: 'http://esportwzse.pl/services',
       pathRewrite: {
         '^/api': '/',
       },
     },
   },
-  axios: { baseURL: '/', proxy: true },
+  axios: { proxy: true },
   content: {},
   build: {},
   styleResources: {

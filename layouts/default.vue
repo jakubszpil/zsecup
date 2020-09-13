@@ -49,18 +49,24 @@ body,
   color: $white;
   font-family: $font;
   height: -webkit-fill-available;
+  font-size: 14px;
+  @media screen and (min-width: $mq--desktop) {
+    font-size: 16px;
+  }
 }
 
 a {
   color: inherit;
-  &:hover {
-    color: white;
-  }
 }
 
 .link {
   text-decoration: none;
   color: inherit;
+}
+a:not(.link) {
+  &:hover {
+    color: $yellow;
+  }
 }
 
 .button {
@@ -73,11 +79,47 @@ a {
   color: $black;
   border: 0;
   cursor: pointer;
+  &:hover {
+    background-color: lighten($color: $yellow, $amount: 8);
+  }
 }
 
 section {
   padding-top: $padding * 2;
   z-index: 1;
+  h1 {
+    font-size: 32px;
+    font-size: 2rem;
+  }
+  h2 {
+    font-size: 24px;
+    font-size: 1.5rem;
+  }
+  h3 {
+    font-size: 20.8px;
+    font-size: 1.3rem;
+  }
+  h4 {
+    font-size: 16px;
+    font-size: 1rem;
+  }
+  h5 {
+    font-size: 12.8px;
+    font-size: 0.8rem;
+  }
+  h6 {
+    font-size: 11.2px;
+    font-size: 0.7rem;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-bottom: $padding / 2;
+  }
 }
 
 main {
@@ -96,11 +138,10 @@ main {
     left: 0;
     content: '';
     display: block;
-    background-color: #000;
+    background-color: darken($color: $black, $amount: 3);
     opacity: 0;
     transition: opacity $timing * 2;
     visibility: collapse;
-    z-index: 100;
   }
 
   &--trigger {

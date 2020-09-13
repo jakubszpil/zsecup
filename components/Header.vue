@@ -7,7 +7,7 @@
     <Container class="header__container">
       <h1 class="header__title">
         <nuxt-link to="/" :tabindex="tabIndex('hidden')" class="link header-logo">
-          <img src="/img/logo.png" alt="ZSECUP LOGO" class="header-logo__image" />
+          <img src="/img/logo.svg" alt="ZSECUP LOGO" class="header-logo__image" />
           <span class="header-logo__title">zse4cup</span>
         </nuxt-link>
       </h1>
@@ -129,6 +129,7 @@ export default {
     display: block;
     top: 0;
     left: 0;
+    transition: $timing;
     z-index: -1;
   }
 
@@ -319,7 +320,6 @@ export default {
     &::before,
     &::after {
       opacity: 1;
-      transition: opacity $timing;
     }
   }
 

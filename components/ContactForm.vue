@@ -53,7 +53,7 @@
           />
         </div>
         <div class="form-field">
-          <label for="message" class="form-field__label">Wiadomosć</label>
+          <label for="message" class="form-field__label">Wiadomość</label>
           <textarea
             v-model="user.message"
             id="message"
@@ -85,20 +85,23 @@ export default {
     shortVariant: Boolean,
   },
   methods: {
-    handleSubmit(e) {
+    async handleSubmit(e) {
       e.preventDefault()
-      this.$axios
-        .post('/api/mail.php', {
-          ...this.user,
-        })
-        .then(({ data }) => {
-          this.mailing = data
-          if (data.response.status === 200)
-            this.user = {
-              email: '',
-              message: '',
-            }
-        })
+      try {
+        const { data } = await this.$axios.post('/api/mail.php', { ...this.user })
+        this.mailing = data
+        if (data.response.status === 200)
+          this.user = {
+            email: '',
+            message: '',
+          }
+      } catch (e) {
+        this.mailing = {
+          response: { status: 400 },
+          send: false,
+          error: 'Error occured',
+        }
+      }
     },
   },
   data() {
@@ -128,7 +131,7 @@ export default {
     flex-direction: column;
   }
   p {
-    margin: $padding 0;
+    margin-top: $padding;
   }
   &-field {
     &__input,
@@ -169,6 +172,7 @@ export default {
     text-align: left;
     align-self: center;
     width: 100%;
+    margin: $padding 0;
     &--success {
       color: #7bed9f;
     }
@@ -178,7 +182,9 @@ export default {
   }
 
   @media screen and (min-width: $mq--desktop) {
+    p,
     .notification {
+      width: 100%;
       text-align: center;
     }
   }

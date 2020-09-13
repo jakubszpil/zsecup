@@ -5,7 +5,7 @@
 <script>
 export default {
   async asyncData({ $content, params }) {
-    const article = await $content('', 'turniej').fetch()
+    const article = await $content('', 'polityka-prywatnosci').fetch()
     return { article }
   },
 }
