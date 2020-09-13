@@ -2,7 +2,7 @@
   <section>
     <Container>
       <article>
-        <h1 v-if="hasHeading">{{ article.title }}</h1>
+        <h2 v-if="hasHeading">{{ article.title }}</h2>
         <nuxt-content :document="article" />
       </article>
     </Container>
