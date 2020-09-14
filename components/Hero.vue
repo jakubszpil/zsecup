@@ -28,15 +28,19 @@ export default {
   },
   methods: {
     handleScroll() {
-      const { height } = this.$refs.hero.getBoundingClientRect()
-      const offset = document.body.scrollTop || document.documentElement.scrollTop
-      if (offset < height) this.$refs.hero.style.backgroundPositionY = `${offset * Math.PI * 0.2}px`
+      if (!this.isMobile) {
+        const { height } = this.$refs.hero.getBoundingClientRect()
+        const offset = document.body.scrollTop || document.documentElement.scrollTop
+        if (offset < height) this.$refs.hero.style.backgroundPositionY = `${offset * Math.PI * 0.2}px`
+      } else this.$refs.hero.style.backgroundPositionY = '0px'
     },
   },
   watch: {
     isMobile(n, o) {
-      if (n) window.removeEventListener('scroll', this.handleScroll)
-      else window.addEventListener('scroll', this.handleScroll)
+      if (this.isMobile) {
+        this.handleScroll()
+        window.removeEventListener('scroll', this.handleScroll)
+      } else window.addEventListener('scroll', this.handleScroll)
     },
   },
   mounted() {
