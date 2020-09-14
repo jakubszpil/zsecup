@@ -15,7 +15,10 @@ export default {
         content: process.env.npm_package_description || '',
       },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/img/logo.svg' }],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/img/logo.svg' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Varela+Round&display=swap' },
+    ],
     script: [
       {
         src: 'https://kit.fontawesome.com/bb5b654169.js',
