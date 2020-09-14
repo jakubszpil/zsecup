@@ -61,9 +61,10 @@ export default {
         background-color: rgba($color: $black, $alpha: 0.8);
       }
       &__title {
-        @media screen and (max-width: $mq--mobile) {
+        /* margin: 0; */
+        /* @media screen and (max-width: $mq--mobile) {
           flex: 1;
-        }
+        } */
       }
       &__description {
         flex: 1;
@@ -72,7 +73,7 @@ export default {
         left: 0;
         overflow: hidden;
         @media screen and (max-width: $mq--mobile) {
-          font-size: 0.8rem;
+          font-size: 1rem;
         }
       }
 

@@ -12,8 +12,12 @@ export default {
   methods: {
     changeHeight() {
       const { width } = this.$refs.post.getBoundingClientRect()
-      if (window.innerWidth < 800) this.$refs.post.setAttribute('style', `height: ${width / 2}px`)
-      else this.$refs.post.setAttribute('style', `height: ${width}px`)
+
+      const apply = (value) => this.$refs.post.setAttribute('style', `height: ${value}px`)
+
+      if (width < 320) apply(width)
+      else if (width > 400 || width < 200) apply(width / 2)
+      else apply((width / 3) * 2)
     },
     handleResize() {
       this.changeHeight()
