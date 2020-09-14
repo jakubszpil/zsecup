@@ -3,10 +3,7 @@
     <Post class="shortcuts-item" v-for="(post, key) in posts" :key="key">
       <div class="shortcuts-item-content" :style="`background-image: url('/img/hero.jpg')`">
         <h3 class="shortcuts-item-content__title">{{ post.title }}</h3>
-        <p
-          v-show="!$store.state.menu.mobile"
-          class="shortcuts-item-content__description"
-        >{{ post.description }}</p>
+        <p class="shortcuts-item-content__description">{{ post.description }}</p>
         <nuxt-link :to="'/aktualnosci/' + post.slug" class="link button">Zobacz więcej</nuxt-link>
       </div>
     </Post>
@@ -74,10 +71,19 @@ export default {
         top: 0;
         left: 0;
         overflow: hidden;
+        @media screen and (max-width: $mq--mobile) {
+          font-size: 0.8rem;
+        }
       }
 
       .button {
         align-self: flex-end;
+      }
+
+      @media screen and (max-width: $mq--mobile) {
+        .button {
+          width: 100%;
+        }
       }
     }
   }
