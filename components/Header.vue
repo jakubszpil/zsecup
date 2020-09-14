@@ -30,12 +30,15 @@
           </ul>
           <ul class="menu-list menu-list--social">
             <li v-for="(link, key) in socialLinks" :key="key" class="menu-list-item">
-              <nuxt-link
+              <a
                 class="link menu-list-item__link"
-                @click.native="handleMenuClose"
+                @click="handleMenuClose"
                 :tabindex="tabIndex('show')"
-                :to="link.path"
-              >{{ link.name }}</nuxt-link>
+                :href="link.path"
+                target="__blank"
+              >
+                <span class="icon" :class="[link.icon]"></span>
+              </a>
             </li>
           </ul>
         </div>
@@ -232,6 +235,14 @@ export default {
         justify-content: center;
       }
     }
+
+    .icon {
+      font-weight: 400;
+      font-size: 16px;
+      &:hover {
+        color: $yellow;
+      }
+    }
   }
 
   @media screen and (max-width: $mq--mobile) {
@@ -266,9 +277,17 @@ export default {
 
         &--social {
           position: absolute;
-          bottom: 0;
+          bottom: $padding;
           left: 50%;
           transform: translateX(-50%);
+          opacity: 0;
+          transition: opacity $timing;
+
+          .menu-list-item {
+            &:nth-child(1) {
+              margin-right: $padding / 2;
+            }
+          }
         }
       }
     }
@@ -290,6 +309,10 @@ export default {
             opacity: 1;
             transition: transform $timing * 2 $timing * 3, opacity $timing * 4 $timing * 3;
           }
+        }
+        &--social {
+          opacity: 1;
+          transition: opacity $timing * 2 $timing * 3;
         }
       }
     }
@@ -366,6 +389,14 @@ export default {
 
             &:nth-last-child(1) {
               margin-right: 0;
+            }
+          }
+        }
+        &--social {
+          margin-left: $padding;
+          .menu-list-item {
+            &:nth-child(1) {
+              margin-right: $padding / 2;
             }
           }
         }

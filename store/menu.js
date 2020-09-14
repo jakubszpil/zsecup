@@ -24,7 +24,16 @@ export const state = () => ({
       name: 'Kontakt',
     },
   ],
-  social: [],
+  social: [
+    {
+      path: 'https://www.facebook.com/esportwzse',
+      icon: 'fab fa-facebook-f',
+    },
+    {
+      path: 'https://www.youtube.com/channel/UCcO6aursoJWPU7yYEEoSGFQ',
+      icon: 'fab fa-youtube',
+    },
+  ],
 })
 
 export const mutations = {

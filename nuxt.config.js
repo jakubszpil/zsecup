@@ -16,6 +16,12 @@ export default {
       },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/img/logo.svg' }],
+    script: [
+      {
+        src: 'https://kit.fontawesome.com/bb5b654169.js',
+        crossorigin: 'anonymous',
+      },
+    ],
   },
   plugins: [],
   css: [],

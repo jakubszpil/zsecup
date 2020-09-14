@@ -3,9 +3,8 @@
     <Container>
       <p>
         {{ new Date().getFullYear() }} &copy; Wszelkie prawa zastrzeżone
-        <br />
-        <nuxt-link class="footer-title link" to="/">ZSE4CUP</nuxt-link>
       </p>
+      <nuxt-link class="footer-title link" to="/">ZSE4CUP</nuxt-link>
       <div>
         <nuxt-link to="/regulamin">Regulamin</nuxt-link>
         <nuxt-link to="/polityka-prywatnosci">Polityka Prywatności</nuxt-link>

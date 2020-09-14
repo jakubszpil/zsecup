@@ -1,8 +1,15 @@
 <template>
   <section>
     <Container>
-      <h2 v-if="shortVariant">Szybki kontakt</h2>
-      <h2 v-else>Kontakt</h2>
+      <header>
+        <button v-if="$route.path !== '/'" class="back-btn" @click="$router.go(-1)">
+          <div class="back-btn__inner">
+            <span class="back-btn__bar"></span>
+          </div>
+        </button>
+        <h2 v-if="shortVariant">Szybki kontakt</h2>
+        <h2 v-else>Kontakt</h2>
+      </header>
       <form @submit="handleSubmit" class="form">
         <div class="form-field" v-if="!shortVariant">
           <label for="name" class="form-field__label">Imię</label>
