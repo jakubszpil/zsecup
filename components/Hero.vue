@@ -30,8 +30,13 @@ export default {
     handleScroll() {
       const { height } = this.$refs.hero.getBoundingClientRect()
       const offset = document.body.scrollTop || document.documentElement.scrollTop
-      if (offset < height) this.$refs.hero.style.backgroundPositionY = `${(offset * Math.PI) / 8}px`
-      // else if (offset < 0) this.$refs.hero.style.backgroundPositionY = '0px'
+      if (offset < height) this.$refs.hero.style.backgroundPositionY = `${offset * Math.PI * 0.2}px`
+    },
+  },
+  watch: {
+    isMobile(n, o) {
+      if (n) window.removeEventListener('scroll', this.handleScroll)
+      else window.addEventListener('scroll', this.handleScroll)
     },
   },
   mounted() {
