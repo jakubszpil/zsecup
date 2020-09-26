@@ -1,9 +1,7 @@
 <template>
   <footer class="footer">
     <Container>
-      <p>
-        {{ new Date().getFullYear() }} &copy; Wszelkie prawa zastrzeżone
-      </p>
+      <p>{{ new Date().getFullYear() }} &copy; Wszelkie prawa zastrzeżone</p>
       <nuxt-link class="footer-title link" to="/">ZSE4CUP</nuxt-link>
       <div>
         <nuxt-link to="/regulamin">Regulamin</nuxt-link>
@@ -11,8 +9,9 @@
       </div>
       <br />
       <p>
-        Autorzy strony:
-        <br />Jakub Szpil && Kacper Grela
+        Autor strony:
+        <br />
+        <a href="http://jakubszpil.github.io" target="__blank">Jakub Szpil</a>
       </p>
     </Container>
   </footer>

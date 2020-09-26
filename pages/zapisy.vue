@@ -1,6 +1,6 @@
 <template>
-  <Page id="kontakt" heading="Kontakt" :back="true">
-    <ContactForm />
+  <Page id="zapisy" heading="Zapisy drużyn" :back="true">
+    <TeamForm />
   </Page>
 </template>
 

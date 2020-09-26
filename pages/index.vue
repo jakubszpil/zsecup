@@ -1,26 +1,19 @@
 <template>
   <div>
     <Hero />
-    <section id="about">
-      <Container>
-        <h2>O turnieju</h2>
-        <nuxt-link class="secion__link" to="/turniej">Dowiedz się więcej...</nuxt-link>
-      </Container>
-    </section>
-    <section id="news">
-      <Container>
-        <h2>Aktualności</h2>
-        <Posts :posts="articles" />
-        <nuxt-link class="secion__link" to="/aktualnosci">Zobacz wszystkie aktualności</nuxt-link>
-      </Container>
-    </section>
-    <section id="info">
-      <Container>
-        <h2>Informacje</h2>
-        <nuxt-link class="secion__link" to="/informacje">Więcej informacji...</nuxt-link>
-      </Container>
-    </section>
-    <ContactForm id="contact" :shortVariant="true" />
+    <Section id="about" heading="O turnieju">
+      <nuxt-link class="secion__link" to="/turniej">Dowiedz się więcej...</nuxt-link>
+    </Section>
+    <Section id="news" heading="Aktualności">
+      <Posts :posts="articles" />
+      <nuxt-link class="secion__link" to="/aktualnosci">Zobacz wszystkie aktualności</nuxt-link>
+    </Section>
+    <Section id="info" heading="Informacje">
+      <nuxt-link class="secion__link" to="/informacje">Więcej informacji...</nuxt-link>
+    </Section>
+    <Section id="contact" heading="Kontakt">
+      <ContactForm :shortVariant="true" />
+    </Section>
   </div>
 </template>
 

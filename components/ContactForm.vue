@@ -1,89 +1,21 @@
 <template>
-  <section>
-    <Container>
-      <header>
-        <button v-if="$route.path !== '/'" class="back-btn" @click="$router.go(-1)">
-          <div class="back-btn__inner">
-            <span class="back-btn__bar"></span>
-          </div>
-        </button>
-        <h2 v-if="shortVariant">Szybki kontakt</h2>
-        <h2 v-else>Kontakt</h2>
-      </header>
-      <form @submit="handleSubmit" class="form">
-        <div class="form-field" v-if="!shortVariant">
-          <label for="name" class="form-field__label">Imię</label>
-          <input
-            v-model="user.name"
-            type="text"
-            id="name"
-            name="name"
-            class="form-field__input"
-            required
-            placeholder="Imię"
-          />
-        </div>
-        <div class="form-field" v-if="!shortVariant">
-          <label for="surname" class="form-field__label">Nazwisko</label>
-          <input
-            v-model="user.surname"
-            type="text"
-            id="surname"
-            name="surname"
-            class="form-field__input"
-            required
-            placeholder="Nazwisko"
-          />
-        </div>
-        <div class="form-field">
-          <label for="email" class="form-field__label">Email</label>
-          <input
-            v-model="user.email"
-            type="email"
-            name="email"
-            id="email"
-            class="form-field__input"
-            required
-            placeholder="Email"
-          />
-        </div>
-        <div class="form-field" v-if="!shortVariant">
-          <label for="subject" class="form-field__label">Temat</label>
-          <input
-            v-model="user.subject"
-            type="text"
-            name="subject"
-            id="subject"
-            class="form-field__input"
-            required
-            placeholder="Temat wiadomości"
-          />
-        </div>
-        <div class="form-field">
-          <label for="message" class="form-field__label">Wiadomość</label>
-          <textarea
-            v-model="user.message"
-            id="message"
-            name="message"
-            class="form-field__textarea"
-            required
-            placeholder="Treść wiadomości"
-          ></textarea>
-        </div>
-        <button class="button form__button" name="sendMessage" type="submit">Wyślij</button>
-        <p v-if="shortVariant">
-          Jeśli chcesz się o coś zapytać lub chcesz się rozpisać, przejdź do
-          <nuxt-link to="/kontakt">formularzu kontaktowego</nuxt-link>
-        </p>
+  <form @submit="handleSubmit" class="form" @reset="handleReset">
+    <FormField v-if="!shortVariant" label="Imię" id="name" name="name" v-model="user.name" type="text" />
+    <FormField v-if="!shortVariant" label="Nazwisko" id="surname" name="surname" v-model="user.surname" type="text" />
+    <FormField label="Email" id="email" name="email" v-model="user.email" type="email" />
+    <FormField v-if="!shortVariant" label="Temat" id="subject" name="subject" v-model="user.subject" type="text" />
+    <FormField label="Wiadomość" id="message" name="message" v-model="user.message" type="message" />
 
-        <p
-          v-if="mailing.response"
-          class="notification"
-          :class="[mailing.send ? 'notification--success' : 'notification--error']"
-        >{{ mailing.send ? "Wiadomość została pomyślnie wysłana :)" : "Ups, coś poszło nie tak :/ Spróbuj jeszcze raz"}}</p>
-      </form>
-    </Container>
-  </section>
+    <button class="button form__button" name="sendMessage" type="submit">Wyślij</button>
+    <p v-if="shortVariant">
+      Jeśli chcesz się o coś zapytać lub chcesz się rozpisać, przejdź do
+      <nuxt-link to="/kontakt">formularzu kontaktowego</nuxt-link>
+    </p>
+
+    <p v-if="mailing.response" class="notification" :class="[mailing.send ? 'notification--success' : 'notification--error']">
+      {{ mailing.send ? 'Wiadomość została pomyślnie wysłana :)' : 'Ups, coś poszło nie tak :/ Spróbuj jeszcze raz' }}
+    </p>
+  </form>
 </template>
 
 <script>
@@ -94,21 +26,53 @@ export default {
   methods: {
     async handleSubmit(e) {
       e.preventDefault()
-      try {
-        const { data } = await this.$axios.post('/api/mail.php', { ...this.user })
-        this.mailing = data
-        if (data.response.status === 200)
-          this.user = {
-            email: '',
-            message: '',
-          }
-      } catch (e) {
-        this.mailing = {
-          response: { status: 400 },
-          send: false,
-          error: 'Error occured',
-        }
+      // try {
+      //   const { data } = await this.$axios.post('/api/mail.php', {
+      //     ...this.user,
+      //   })
+      //   this.mailing = data
+      //   if (data.response.status === 200)
+      //     this.user = {
+      //       email: '',
+      //       message: '',
+      //     }
+      // } catch (e) {
+      //   this.mailing = {
+      //     response: { status: 400 },
+      //     send: false,
+      //     error: 'Error occured',
+      //   }
+      // }
+
+      this.mailing = {
+        response: { status: 200 },
+        send: true,
+        error: null,
       }
+      console.log('haah nie wysłano')
+      this.user = {
+        email: '',
+        message: '',
+        name: '',
+        surname: '',
+        subject: '',
+      }
+    },
+    handleReset(e) {
+      e.preventDefault()
+      if (!this.shortVariant)
+        this.user = {
+          email: '',
+          message: '',
+          name: '',
+          surname: '',
+          subject: '',
+        }
+      else
+        this.user = {
+          email: '',
+          message: '',
+        }
     },
   },
   data() {
@@ -125,7 +89,7 @@ export default {
 
 <style lang="scss">
 .form {
-  padding: $padding / 2 0;
+  padding: $padding / 2 0 $padding;
   max-width: $mq--mobile - $padding * 2.5;
   margin: 0 auto;
 
@@ -173,6 +137,10 @@ export default {
   }
   &__button {
     width: 100%;
+    margin-bottom: $padding / 2;
+    &:nth-last-child(1) {
+      margin-bottom: 0;
+    }
   }
 
   .notification {

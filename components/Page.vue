@@ -1,25 +1,25 @@
 <template>
-  <section>
-    <Container>
-      <article>
-        <header>
-          <button class="back-btn" @click="$router.go(-1)">
-            <div class="back-btn__inner">
-              <span class="back-btn__bar"></span>
-            </div>
-          </button>
-          <h2 v-if="hasHeading">{{ article.title }}</h2>
-        </header>
-        <slot />
-        <nuxt-content v-if="article" :document="article" />
-      </article>
-    </Container>
-  </section>
+  <Section
+    :id="
+      article
+        ? article.title
+            .split(/\s/)
+            .map((item) => item.split(/(!|\?)/)[0])
+            .join('-')
+            .toLowerCase()
+        : id
+    "
+    :heading="article ? article.title : heading"
+    :back="back || true"
+  >
+    <nuxt-content v-if="article" :document="article" />
+    <slot />
+  </Section>
 </template>
 
 <script>
 export default {
-  props: ['article', 'hasHeading'],
+  props: ['article', 'heading', 'id', 'back'],
 }
 </script>
 
@@ -36,7 +36,6 @@ article header {
   }
 }
 .back-btn {
-  margin-right: $padding / 3;
   border: 0;
   background: transparent;
   cursor: pointer;
@@ -77,11 +76,12 @@ article header {
       width: $padding / 3;
       transform-origin: left;
     }
+    $deg: 45deg;
     &::before {
-      transform: rotate(-30deg);
+      transform: rotate(-1 * $deg);
     }
     &::after {
-      transform: rotate(30deg);
+      transform: rotate($deg);
     }
   }
 }

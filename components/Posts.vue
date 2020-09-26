@@ -60,12 +60,6 @@ export default {
         z-index: -1;
         background-color: rgba($color: $black, $alpha: 0.8);
       }
-      &__title {
-        /* margin: 0; */
-        /* @media screen and (max-width: $mq--mobile) {
-          flex: 1;
-        } */
-      }
       &__description {
         flex: 1;
         position: sticky;
@@ -90,5 +84,3 @@ export default {
   }
 }
 </style>
-
-

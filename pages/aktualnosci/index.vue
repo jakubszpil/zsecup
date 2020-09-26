@@ -1,17 +1,7 @@
 <template>
-  <section>
-    <Container>
-      <header>
-        <button class="back-btn" @click="$router.go(-1)">
-          <div class="back-btn__inner">
-            <span class="back-btn__bar"></span>
-          </div>
-        </button>
-        <h2>Najnowsze aktualności</h2>
-      </header>
-      <Posts :posts="articles" />
-    </Container>
-  </section>
+  <Section id="news" heading="Aktualności" :back="true">
+    <Posts :posts="articles" />
+  </Section>
 </template>
 
 <script>

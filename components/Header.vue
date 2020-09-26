@@ -1,9 +1,5 @@
 <template>
-  <header
-    class="app-header header"
-    :class="[isMobile ? 'header--mobile' : 'header--desktop', $route.path === '/' ? 'header--transparent' : null, isMobile && isOpen ? 'header--menu-opened' : null, isScrolled ? 'header--scrolled' : null]"
-    ref="header"
-  >
+  <header class="app-header header" :class="[isMobile ? 'header--mobile' : 'header--desktop', $route.path === '/' ? 'header--transparent' : null, isMobile && isOpen ? 'header--menu-opened' : null, isScrolled ? 'header--scrolled' : null]" ref="header">
     <Container class="header__container">
       <h1 class="header__title">
         <nuxt-link to="/" :tabindex="tabIndex('hidden')" class="link header-logo">
@@ -20,23 +16,12 @@
         <div class="nav__menu menu">
           <ul class="menu-list menu-list--navigation">
             <li v-for="(link, key) in menuLinks" :key="key" class="menu-list-item">
-              <nuxt-link
-                class="link menu-list-item__link"
-                @click.native="handleMenuClose"
-                :tabindex="tabIndex('show')"
-                :to="link.path"
-              >{{ link.name }}</nuxt-link>
+              <nuxt-link class="link menu-list-item__link" @click.native="handleMenuClose" :tabindex="tabIndex('show')" :to="link.path">{{ link.name }}</nuxt-link>
             </li>
           </ul>
           <ul class="menu-list menu-list--social">
             <li v-for="(link, key) in socialLinks" :key="key" class="menu-list-item">
-              <a
-                class="link menu-list-item__link"
-                @click="handleMenuClose"
-                :tabindex="tabIndex('show')"
-                :href="link.path"
-                target="__blank"
-              >
+              <a class="link menu-list-item__link" @click="handleMenuClose" :tabindex="tabIndex('show')" :href="link.path" target="__blank">
                 <span class="icon" :class="[link.icon]"></span>
               </a>
             </li>
@@ -85,7 +70,7 @@ export default {
       this.closeMenu()
     },
     handleDeviceTypeChange() {
-      this.changeMobile(/iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.innerWidth < 800)
+      this.changeMobile(/iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.innerWidth < 900)
     },
   },
   watch: {
@@ -102,6 +87,7 @@ export default {
   },
   mounted() {
     this.handleDeviceTypeChange()
+
     window.addEventListener('resize', this.handleDeviceTypeChange)
     window.addEventListener('scroll', this.handleScroll)
   },
@@ -356,14 +342,23 @@ export default {
         &--navigation {
           .menu-list-item {
             margin-right: $padding / 2;
+            &:nth-last-child(1) {
+              margin-right: 0;
+            }
+          }
+          .menu-list-item__link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 18px;
             position: relative;
+            padding: $padding / 6;
             &::before,
             &::after {
               display: block;
               content: '';
               position: absolute;
-              bottom: -9px;
+              bottom: -6px;
               height: 3px;
               width: 100%;
               border-radius: 3px;
@@ -376,6 +371,7 @@ export default {
             &::after {
               background: $yellow;
             }
+            /* &.nuxt-link-exact-active, */
             &:hover {
               &::before {
                 transition: transform $timing 0s;
@@ -385,10 +381,6 @@ export default {
                 transition: transform $timing $timing * 2;
                 transform: scale(1, 1);
               }
-            }
-
-            &:nth-last-child(1) {
-              margin-right: 0;
             }
           }
         }

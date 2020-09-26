@@ -1,5 +1,5 @@
 ---
-title: 'Informacje'
+title: 'Informacje o turnieju'
 description: ''
 ---
 

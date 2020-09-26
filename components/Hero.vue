@@ -10,7 +10,7 @@
       <p class="hero__quote">Przeżyj niesamowite chwile</p>
 
       <div class="hero-links">
-        <nuxt-link class="link button hero-links__item" to="/turniej">Turniej</nuxt-link>
+        <nuxt-link class="link button hero-links__item" to="/zapisy">Zapisy</nuxt-link>
         <nuxt-link class="link button hero-links__item" to="/kontakt">Kontakt</nuxt-link>
       </div>
     </Container>

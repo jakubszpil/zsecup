@@ -1,5 +1,5 @@
 <template>
-  <Page :article="article" :hasHeading="true" />
+  <Page :article="article" />
 </template>
 
 <script>
