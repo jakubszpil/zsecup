@@ -2,17 +2,18 @@
   <form @submit="handleSubmit" @reset="handleReset" class="form">
     <FormField v-model="team.name" type="text" id="name" name="name" label="Nazwa drużyny" />
     <FormField v-model="team.shortcut" type="text" id="shortcut" name="shortcut" label="Skrót nazwy" />
-    <FormField v-model="team.captain.name" type="text" id="captainName" name="captainName" label="Imię kapitana" />
-    <FormField v-model="team.captain.surname" type="text" id="captainSurname" name="captainSurname" label="Nazwisko kapitana" />
-    <FormField v-model="team.captain.username" type="text" id="captainUsername" name="captainUsername" label="Username kapitana" />
-    <FormField v-model="team.captain.email" pattern=".*@zse.krakow.pl" type="email" name="captainEmail" id="captainEmail" label="Email kapitana" />
-    <FormField v-if="team.gameID === 0" v-model="team.captain.steamid" type="text" name="captainSteamid" id="captainSteamid" label="Steam id kapitana" />
     <div class="form-field">
       <label for="game" class="form-field__label">Gra</label>
       <select class="form-field__input" v-model="team.gameID" id="game" name="game">
         <option v-for="(game, key) in games" :key="key" :value="key">{{ game }}</option>
       </select>
     </div>
+    <FormField v-model="team.captain.name" type="text" id="captainName" name="captainName" label="Imię kapitana" />
+    <FormField v-model="team.captain.surname" type="text" id="captainSurname" name="captainSurname" label="Nazwisko kapitana" />
+    <FormField v-model="team.captain.username" type="text" id="captainUsername" name="captainUsername" label="Username kapitana" />
+    <FormField v-model="team.captain.email" pattern=".*@zse.krakow.pl" type="email" name="captainEmail" id="captainEmail" label="Email kapitana" />
+    <FormField v-if="team.gameID === 0" v-model="team.captain.steamid" type="text" name="captainSteamid" id="captainSteamid" label="Steam id kapitana" />
+
     <div class="form-field">
       <ul class="form-list">
         <li v-for="player in team.players" :key="player.id" class="form-list-item">
@@ -42,7 +43,7 @@
 
     <div v-if="status.response">
       <p class="notification" :class="[status.send ? 'notification--success' : 'notification--error']">
-        {{ status.send ? 'Prośba o dodanie drużyny została pomyślnie wysłana :)' : 'Ups, coś poszło nie tak :/ Spróbuj jeszcze raz' }}
+        {{ status.send ? 'Drużyna została pomyślnie dodana :)' : 'Ups, coś poszło nie tak :/ Spróbuj jeszcze raz' }}
       </p>
       <p v-if="status.error" class="notification notification--error">
         {{ status.error }}
@@ -91,7 +92,7 @@ export default {
       immediate: true,
     },
     status() {
-      if (this.status.response) alert(this.status.send ? 'Drużyna została pomyślnie dodana :)' : 'Ups, coś poszło nie tak :/ Spróbuj jeszcze raz')
+      if (this.status.response && this.status.send) alert('Drużyna została pomyślnie dodana :)')
     },
   },
   methods: {

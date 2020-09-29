@@ -1,5 +1,5 @@
 <template>
-  <Page id="zapisy" heading="Prośba o dodanie drużyny" :back="true">
+  <Page id="zapisy" heading="Dodawanie drużyny" :back="true">
     <TeamForm />
   </Page>
 </template>
