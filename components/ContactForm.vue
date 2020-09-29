@@ -23,33 +23,39 @@ export default {
   props: {
     shortVariant: Boolean,
   },
+  data() {
+    return {
+      user: {
+        email: '',
+        message: '',
+      },
+      mailing: {},
+    }
+  },
   methods: {
     async handleSubmit(e) {
       e.preventDefault()
-      // try {
-      //   const { data } = await this.$axios.post('/api/mail.php', {
-      //     ...this.user,
-      //   })
-      //   this.mailing = data
-      //   if (data.response.status === 200)
-      //     this.user = {
-      //       email: '',
-      //       message: '',
-      //     }
-      // } catch (e) {
-      //   this.mailing = {
-      //     response: { status: 400 },
-      //     send: false,
-      //     error: 'Error occured',
-      //   }
-      // }
+      try {
+        const { data } = await this.$axios.post('/api/mail.php', { ...this.user }, { withCredentials: true })
+        this.mailing = data
+        if (data.response.status === 200)
+          this.user = {
+            email: '',
+            message: '',
+          }
+      } catch (e) {
+        this.mailing = {
+          response: { status: 400 },
+          send: false,
+          error: 'Error occured',
+        }
+      }
 
       this.mailing = {
         response: { status: 200 },
         send: true,
         error: null,
       }
-      console.log('haah nie wysłano')
       this.user = {
         email: '',
         message: '',
@@ -74,15 +80,6 @@ export default {
           message: '',
         }
     },
-  },
-  data() {
-    return {
-      user: {
-        email: '',
-        message: '',
-      },
-      mailing: {},
-    }
   },
 }
 </script>

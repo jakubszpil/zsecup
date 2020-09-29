@@ -33,7 +33,7 @@ export default {
   modules: ['@nuxtjs/axios', '@nuxt/content', '@nuxtjs/proxy', '@nuxtjs/style-resources'],
   proxy: {
     '/api': {
-      target: 'http://localhost/services',
+      target: 'http://www.esportwzse.pl/services',
       pathRewrite: {
         '^/api': '/',
       },

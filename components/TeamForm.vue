@@ -40,9 +40,14 @@
     <button class="button form__button" name="reset" type="reset">Wyczyść</button>
     <button class="button form__button" name="addTeam" type="submit">Zapisz drużynę</button>
 
-    <p v-if="status.response" class="notification" :class="[status.send ? 'notification--success' : 'notification--error']">
-      {{ status.send ? 'Drużyna została pomyślnie dodana :)' : 'Ups, coś poszło nie tak :/ Spróbuj jeszcze raz' }}
-    </p>
+    <div v-if="status.response">
+      <p class="notification" :class="[status.send ? 'notification--success' : 'notification--error']">
+        {{ status.send ? 'Prośba o dodanie drużyny została pomyślnie wysłana :)' : 'Ups, coś poszło nie tak :/ Spróbuj jeszcze raz' }}
+      </p>
+      <p v-if="status.error" class="notification notification--error">
+        {{ status.error }}
+      </p>
+    </div>
   </form>
 </template>
 
@@ -61,7 +66,6 @@ export default {
           email: '',
           steamid: '',
         },
-        logo: '',
         gameID: 0,
         players: [],
         standin: {
@@ -75,9 +79,6 @@ export default {
       status: {},
     }
   },
-  mounted() {
-    this.team.players = [0, 1, 2, 3].map((item) => this.createPlayer(item))
-  },
   watch: {
     'team.gameID': {
       handler: function (val, oldval) {
@@ -87,6 +88,7 @@ export default {
         this.team.players = arr.map((item) => this.createPlayer(item))
       },
       deep: true,
+      immediate: true,
     },
     status() {
       if (this.status.response) alert(this.status.send ? 'Drużyna została pomyślnie dodana :)' : 'Ups, coś poszło nie tak :/ Spróbuj jeszcze raz')
@@ -95,66 +97,37 @@ export default {
   methods: {
     async handleSubmit(e) {
       e.preventDefault()
-      // try {
-      //   const { data } = await this.$axios.post('/api/add_team.php', {
-      //     ...this.team,
-      //   })
-      //   this.status = data
-      //   // if (data.response.status === 200)
-      //   //   this.team = {
-      //   //     name: '',
-      //   //     shortcut: '',
-      //   //     captain: {
-      //   //       username: '',
-      //   //       name: '',
-      //   //       surname: '',
-      //   //       email: '',
-      //   //       steamid: '',
-      //   //     },
-      //   //     logo: '',
-      //   //     gameID: 0,
-      //   //     players: [],
-      //   //     standin: {
-      //   //       username: '',
-      //   //       name: '',
-      //   //       surname: '',
-      //   //       email: '',
-      //   //       steamid: '',
-      //   //     },
-      //   //   }
-      // } catch (e) {
-      //   this.status = {
-      //     response: { status: 400 },
-      //     send: false,
-      //     error: 'Error occured',
-      //   }
-      // }
-      this.status = {
-        response: { status: 200 },
-        send: true,
-        error: null,
-      }
-      console.log('haha nie wysłano')
-      this.team = {
-        name: '',
-        shortcut: '',
-        captain: {
-          username: '',
-          name: '',
-          surname: '',
-          email: '',
-          steamid: '',
-        },
-        logo: '',
-        gameID: 0,
-        players: [],
-        standin: {
-          username: '',
-          name: '',
-          surname: '',
-          email: '',
-          steamid: '',
-        },
+      try {
+        const { data } = await this.$axios.post(`/api/add_team.php`, { ...this.team }, { withCredentials: true })
+        this.status = data
+        if (data.response.status === 200)
+          this.team = {
+            name: '',
+            shortcut: '',
+            captain: {
+              username: '',
+              name: '',
+              surname: '',
+              email: '',
+              steamid: '',
+            },
+            gameID: 0,
+            players: [],
+            standin: {
+              username: '',
+              name: '',
+              surname: '',
+              email: '',
+              steamid: '',
+            },
+          }
+        else throw Error(data.error)
+      } catch (e) {
+        this.status = {
+          response: { status: 400 },
+          send: false,
+          error: e,
+        }
       }
     },
     handleReset(e) {
@@ -169,7 +142,6 @@ export default {
           email: '',
           steamid: '',
         },
-        logo: '',
         gameID: 0,
         players: [],
         standin: {
@@ -180,6 +152,7 @@ export default {
           steamid: '',
         },
       }
+      this.status = {}
     },
     createPlayer(id) {
       return {
