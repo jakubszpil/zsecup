@@ -1,4 +1,4 @@
 [[redirects]]
-  from = "/api"
+  from = "/api/*"
   to = "http://www.esportwzse.pl/services"
   status = 200
