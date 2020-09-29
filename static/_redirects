@@ -1,1 +1,1 @@
-/api/* http://www.esportwzse.pl/services
+/api/* http://www.esportwzse.pl/services/:splat 200!
