@@ -2,3 +2,4 @@
   from = "/api/*"
   to = "http://www.esportwzse.pl/services"
   status = 200
+  headers = {X-Frame-Options: CROSSORIGIN}
