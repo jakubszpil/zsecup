@@ -1,5 +1,6 @@
 <template>
-  <Page :article="article" :hasHeading="true" />
+  <PageInBuild />
+  <!-- <Page :article="article" :hasHeading="true" /> -->
 </template>
 
 <script>
@@ -11,5 +12,4 @@ export default {
 }
 </script>
 
-<style>
-</style>
+<style></style>

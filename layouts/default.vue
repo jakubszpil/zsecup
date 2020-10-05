@@ -1,16 +1,12 @@
 <template>
   <div>
     <Header />
-    <main
-      :class="[isMobile ? 'translate' : null, isOpen && isMobile ? 'translate--trigger' : null]"
-    >
+    <main :class="[isMobile ? 'translate' : null, isOpen && isMobile ? 'translate--trigger' : null]">
       <transition name="page">
         <nuxt />
       </transition>
     </main>
-    <Footer
-      :class="[isMobile ? 'translate' : null, isOpen && isMobile ? 'translate--trigger' : null]"
-    />
+    <Footer :class="[isMobile ? 'translate' : null, isOpen && isMobile ? 'translate--trigger' : null]" />
   </div>
 </template>
 

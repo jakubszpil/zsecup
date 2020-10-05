@@ -1,5 +1,6 @@
 <template>
-  <Page :article="article" />
+  <PageInBuild />
+  <!-- <Page :article="article" /> -->
 </template>
 
 <script>
@@ -11,5 +12,4 @@ export default {
 }
 </script>
 
-<style>
-</style>
+<style></style>

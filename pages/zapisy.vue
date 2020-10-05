@@ -1,7 +1,8 @@
 <template>
-  <Page id="zapisy" heading="Dodawanie drużyny" :back="true">
+  <PageInBuild />
+  <!-- <Page id="zapisy" heading="Dodawanie drużyny" :back="true">
     <TeamForm />
-  </Page>
+  </Page> -->
 </template>
 
 <script>

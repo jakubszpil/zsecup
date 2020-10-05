@@ -1,5 +1,6 @@
 <template>
-  <Page :article="article">
+  <PageInBuild />
+  <!-- <Page :article="article">
     <h2>Regulaminy poszczególnych gier</h2>
     <ul class="files">
       <li class="files-item" v-for="(file, key) in files" :key="key">
@@ -12,7 +13,7 @@
     </ul>
 
     <ContactForm :shortVariant="true" />
-  </Page>
+  </Page> -->
 </template>
 
 <script>
