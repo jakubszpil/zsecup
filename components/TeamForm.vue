@@ -27,13 +27,13 @@
           </div>
         </li>
         <li class="form-list-item">
-          <p class="form-field__label form-list-item__label">Gracz rezerwowy</p>
+          <p class="form-field__label form-list-item__label">Gracz rezerwowy (niewymagany)</p>
           <div class="form-list-item__content">
-            <FormInput type="text" v-model="team.standin.name" :name="`standinName`" required :id="`standinName`" class="form-field__input form-list-item__input" placeholder="Imię" />
-            <FormInput type="text" v-model="team.standin.surname" :name="`standinSurname`" required :id="`standinSurname`" class="form-field__input form-list-item__input" placeholder="Nazwisko" />
-            <FormInput type="text" v-model="team.standin.username" :name="`standinUsername`" required :id="`standinUsername`" class="form-field__input form-list-item__input" placeholder="Username" />
-            <FormInput type="email" v-model="team.standin.email" :name="`standinEmail`" required :id="`standinEmail`" class="form-field__input form-list-item__input" placeholder="Email" pattern=".*@zse.krakow.pl" />
-            <FormInput type="text" v-model="team.standin.steamid" v-if="team.gameID === 0" :name="`standinSteamid`" required :id="`standinSteamid`" class="form-field__input form-list-item__input" placeholder="Steamid" />
+            <FormInput type="text" v-model="team.standin.name" :name="`standinName`" :id="`standinName`" class="form-field__input form-list-item__input" placeholder="Imię" />
+            <FormInput type="text" v-model="team.standin.surname" :name="`standinSurname`" :id="`standinSurname`" class="form-field__input form-list-item__input" placeholder="Nazwisko" />
+            <FormInput type="text" v-model="team.standin.username" :name="`standinUsername`" :id="`standinUsername`" class="form-field__input form-list-item__input" placeholder="Username" />
+            <FormInput type="email" v-model="team.standin.email" :name="`standinEmail`" :id="`standinEmail`" class="form-field__input form-list-item__input" placeholder="Email" pattern=".*@zse.krakow.pl" />
+            <FormInput type="text" v-model="team.standin.steamid" v-if="team.gameID === 0" :name="`standinSteamid`" :id="`standinSteamid`" class="form-field__input form-list-item__input" placeholder="Steamid" />
           </div>
         </li>
       </ul>
@@ -83,9 +83,7 @@ export default {
   watch: {
     'team.gameID': {
       handler: function (val, oldval) {
-        const arr = val === 2 ? [0, 1, 2] : [0, 1, 2, 3]
-        const { length } = arr
-
+        const arr = [0, 1, 2, 3]
         this.team.players = arr.map((item) => this.createPlayer(item))
       },
       deep: true,
@@ -99,7 +97,7 @@ export default {
     async handleSubmit(e) {
       e.preventDefault()
       try {
-        const { data } = await this.$axios.post(`/api/add_team.php`, { ...this.team }, { withCredentials: true })
+        const { data } = await this.$axios.post(`http://www.esportwzse.pl/services/add_team.php`, { ...this.team }, { withCredentials: true })
         this.status = data
         if (data.response.status === 200)
           this.team = {

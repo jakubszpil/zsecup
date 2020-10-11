@@ -36,7 +36,7 @@ export default {
     async handleSubmit(e) {
       e.preventDefault()
       try {
-        const { data } = await this.$axios.post('/api/mail.php', { ...this.user }, { withCredentials: true })
+        const { data } = await this.$axios.post('http://esportwzse.pl/services/mail.php', { ...this.user }, { withCredentials: true })
         this.mailing = data
         if (data.response.status === 200)
           this.user = {

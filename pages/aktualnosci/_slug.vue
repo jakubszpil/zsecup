@@ -1,6 +1,5 @@
 <template>
-  <PageInBuild />
-  <!-- <Page :article="article" :hasHeading="false" /> -->
+  <Page :article="article" :hasHeading="false" />
 </template>
 
 <script>

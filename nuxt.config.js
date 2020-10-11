@@ -31,14 +31,20 @@ export default {
   components: true,
   buildModules: ['@nuxtjs/dotenv'],
   modules: ['@nuxtjs/axios', '@nuxt/content', '@nuxtjs/proxy', '@nuxtjs/style-resources'],
-  proxy: {
-    '/api': {
-      target: 'http://www.esportwzse.pl/services',
-      pathRewrite: {
-        '^/api': '/',
-      },
-    },
-  },
+  // proxy: {
+  //   '/api/mail': {
+  //     target: 'http://www.esportwzse.pl/services/mail.php',
+  //     pathRewrite: {
+  //       '^/api/mail': '/',
+  //     },
+  //   },
+  //   '/api/addteam': {
+  //     target: 'http://www.esportwzse.pl/services/add_team.php',
+  //     pathRewrite: {
+  //       '^/api/addteam': '/',
+  //     },
+  //   },
+  // },
   axios: { proxy: true },
   content: {},
   build: {},

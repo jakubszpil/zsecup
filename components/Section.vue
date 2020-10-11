@@ -2,11 +2,11 @@
   <section :id="id">
     <Container>
       <header>
-        <nuxt-link v-if="back" class="back-btn" to="/" title="Powrót do strony głównej">
+        <button v-if="back" class="back-btn" @click="$router.go(-1)">
           <div class="back-btn__inner">
             <span class="back-btn__bar"></span>
           </div>
-        </nuxt-link>
+        </button>
         <h2>
           <nuxt-link class="link" :to="`${route}#${id}`">{{ heading }}</nuxt-link>
         </h2>
@@ -27,5 +27,4 @@ export default {
 }
 </script>
 
-<style>
-</style>
+<style></style>

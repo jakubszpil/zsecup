@@ -1,8 +1,7 @@
 <template>
-  <PageInBuild />
-  <!-- <Section id="news" heading="Aktualności" :back="true">
+  <Section id="news" heading="Aktualności" :back="true">
     <Posts :posts="articles" />
-  </Section> -->
+  </Section>
 </template>
 
 <script>

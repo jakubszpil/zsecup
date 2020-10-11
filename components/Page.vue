@@ -12,7 +12,7 @@
     :heading="article ? article.title : heading"
     :back="back || true"
   >
-    <nuxt-content v-if="article" :document="article" />
+    <nuxt-content v-if="article" :document="article" class="nuxt-article" />
     <slot />
   </Section>
 </template>
@@ -84,5 +84,43 @@ article header {
       transform: rotate($deg);
     }
   }
+}
+
+.nuxt-content-container {
+  font-size: 18px;
+  @media screen and (min-width: $mq--desktop) {
+    font-size: 21px;
+  }
+  h1 {
+    font-size: 2em;
+    margin-bottom: 2em;
+  }
+  h2 {
+    font-size: 1.5em;
+    margin-bottom: 1.5em;
+  }
+  h3 {
+    font-size: 1.17em;
+    margin-bottom: 1.17em;
+  }
+  h4 {
+    font-size: 1em;
+    margin-bottom: 1em;
+  }
+  h5 {
+    font-size: 0.83em;
+    margin-bottom: 0.83em;
+  }
+  h6 {
+    font-size: 0.67em;
+    margin-bottom: 0.67em;
+  }
+
+  p {
+    font-size: 1em;
+    margin-bottom: 1em;
+  }
+
+  padding-bottom: $padding;
 }
 </style>
