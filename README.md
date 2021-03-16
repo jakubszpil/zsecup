@@ -1,20 +1,22 @@
-# zsecup
+# ZSE CUP
 
-## Build Setup
+Website of the school e-sport tournament called ZSE CUP, taking place at the Zespół Szkół Energetycznych in Krakow, Poland
+
+
+## How to
 
 ```bash
-# install dependencies
+
+# To install all dependencies run:
 $ npm install
 
-# serve with hot reload at localhost:3000
+# To run the application in development mode (the application will start on the port :3000) run:
 $ npm run dev
 
-# build for production and launch server
-$ npm run build
-$ npm run start
+# To build for production run:
+$ npm run build && npm run generate
 
-# generate static project
-$ npm run generate
+# To launch production version run:
+$ serve out
+
 ```
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
